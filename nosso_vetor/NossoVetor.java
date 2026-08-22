@@ -1,3 +1,5 @@
+import java.util.Random;
+
 public class NossoVetor {
     private int[] v;
     private int ocupacao;
@@ -72,15 +74,33 @@ public class NossoVetor {
     }
     @Override
     public String toString () {
-        String s = "capacidade: " + capacidade + "\nocupacao: " + ocupacao;
+        //String s = "capacidade: " + capacidade + "\nocupacao: " + ocupacao;
+        String s = "";
         if (estaVazio())
             s += "\nvetor vazio";
         else {
-            s += "\nelementos: ";
+            //s += "\nelementos: ";
             for (int i=0; i<ocupacao; i++) {
                 s = s + v[i] + " ";
             }
         }
         return s + "\n";
+    }
+    public void preencheVetor () {
+        Random random = new Random();
+        for (int i=0; i<capacidade; i++)
+            v[i] = random.nextInt(10*capacidade);
+        ocupacao = capacidade;
+    }
+    public void bubble () {
+        for (int i=1; i < capacidade; i++) {
+            for (int j=0; j < capacidade-i; j++) {
+                if (v[j] > v[j+1]) {
+                    int aux = v[j];
+                    v[j] = v[j+1];
+                    v[j+1] = aux;
+                }
+            }
+        }
     }
 }
