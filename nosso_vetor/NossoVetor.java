@@ -103,4 +103,29 @@ public class NossoVetor {
             }
         }
     }
+    int partition (int p, int r) { 
+	    int x = v[r];    
+	    int i = p-1;
+        int aux;
+	    for(int j = p; j < r; j++) {
+            if (v[j] <= x) {
+                i = i + 1;
+                aux = v[i];
+                v[i] = v[j]; 
+                v[j] = aux;
+            }
+        }
+        i = i + 1;
+        aux = v[r]; 
+        v[r] = v[i]; 
+        v[i] = aux;
+        return i;
+    }
+    public void quicksort(int p, int r) {
+        if (p < r ) {
+            int q = partition(p, r);
+            quicksort(p, q-1);
+            quicksort(q+1, r);
+        }
+    }
 }

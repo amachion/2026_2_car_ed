@@ -1,6 +1,6 @@
 import java.util.Date;
 import java.util.Scanner;
-public class TesteOrdenacao {
+public class ComparaBubbleQuick {
     public static void main(String[] args) {
         NossoVetor vetor;
         int capacidade;
@@ -10,24 +10,24 @@ public class TesteOrdenacao {
             capacidade = scanner.nextInt();
             if (capacidade > 0) {
                 vetor = new NossoVetor(capacidade);
+                //vetor.preencheVetor();
+                //System.out.println("Vetor original:\n" + vetor);
+                //long inicio = new Date().getTime();
+                //vetor.bubble();
+                //long fim = new Date().getTime();
+                //System.out.println("\nVetor ordenado pelo Bubble:\n" + vetor);
+                //System.out.println("Bubble demorou " + (fim - inicio) + " ms");
                 vetor.preencheVetor();
                 //System.out.println("Vetor original:\n" + vetor);
                 long inicio = new Date().getTime();
-                vetor.bubble();
+                vetor.quicksort(0, capacidade-1);
                 long fim = new Date().getTime();
-                //System.out.println("\nVetor ordenado:\n" + vetor);
-                System.out.println("Bubble demorou " + (fim - inicio) + " ms");
+                //System.out.println("\nVetor ordenado pelo Quick:\n" + vetor);
+                System.out.println("Quick demorou " + (fim - inicio) + " ms");
             }
         } while (capacidade > 0);
         scanner.close();
     }
 }
-
-//implementar na classe NossoVetor o Insertionsort, de acordo com 
-//https://www.ime.usp.br/~pf/algoritmos/aulas/ordena.html#insertion
-
-//realizar testes para tamanhos 10m, 20m, 40m, 80m e 160m e comparar os resultados
-//cuidado, pelo menos 3 testes para cada tamanho para cada método
-
 
 
