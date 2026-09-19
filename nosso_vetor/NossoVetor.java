@@ -107,7 +107,7 @@ public class NossoVetor {
 	    int x = v[r];    
 	    int i = p-1;
         int aux;
-	    for(int j = p; j < r; j++) {
+        for(int j = p; j < r; j++) {
             if (v[j] <= x) {
                 i = i + 1;
                 aux = v[i];
@@ -122,10 +122,54 @@ public class NossoVetor {
         return i;
     }
     public void quicksort(int p, int r) {
-        if (p < r ) {
+        //System.out.printf ("\np = %d, r = %d", p, r);
+	    if (p < r ) {
             int q = partition(p, r);
+            //System.out.printf(", q = %d", q);
             quicksort(p, q-1);
             quicksort(q+1, r);
         }
+    }
+    public void insertion () {
+        for (int i=1; i<ocupacao; i++) {
+            int x = v[i];
+            int j;
+            for (j=i-1; j>=0 && v[j] > x; j--)
+                v[j+1] = v[j];
+            v[j+1] = x;
+        }
+    }
+    public boolean contains (int x) {
+        for (int i=0; i<ocupacao; i++) {
+            if (x == v[i]) return true;
+        }
+        return false;
+        //return indexOf(x) > 0 ? true : false;
+    }
+    public int indexOf (int x) {
+        for (int i=0; i<ocupacao; i++) {
+            if (x == v[i]) return i;
+        }
+        return -1;
+    }
+    public int contadorIteracoes (int x) {
+        int cont=0;
+        for (int i=0; i<ocupacao; i++) {
+            cont++;
+            if (x == v[i]) return cont;
+        }
+        return cont;
+    }
+    public int buscaBinaria (int x) {
+        int ini = 0, fim = ocupacao-1;
+        int cont = 0;
+        while (ini <= fim) {
+            cont++;
+            int meio = (ini + fim) / 2;
+            if (x == v[meio]) return cont;
+            if (x > v[meio]) ini = meio + 1;
+            else fim = meio -1;
+        }
+        return cont;
     }
 }
